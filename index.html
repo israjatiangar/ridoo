@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ridoo</title>
+	</head>
+	<body>
+		<header>
+			<nav class="container">
+				<ul>
+					<li><button class="contrast" id="themeButton">Theme</button></li>
+				</ul>
+				<ul>
+					<li>
+						<h1>riDoo</h1>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<button id="clearAll">Clear All</button>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+		<main class="container grid">
+			<article class="tasksContainer">
+				<details class="tasksDetail" open>
+					<summary role="button" class="secondary">Things to be done</summary>
+					<ul id="tasksList" class="taskList"></ul>
+				</details>
+			</article>
+
+			<article>
+				<details>
+					<summary role="button" class="secondary">
+						Things you have done
+					</summary>
+					<ul id="completedList"></ul>
+				</details>
+			</article>
+		</main>
+
+		<footer class="container">
+			<form id="newTaskForm" action="">
+				<fieldset role="group">
+					<input id="newTaskTitle" type="text" placeholder="New Task" />
+					<button type="">Create</button>
+				</fieldset>
+			</form>
+		</footer>
+
+		<script type="module" src="/src/main.ts" defer></script>
+	</body>
+</html>

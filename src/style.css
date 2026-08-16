@@ -2,11 +2,12 @@
 	interpolate-size: allow-keywords;
 	scrollbar-gutter: stable;
 }
-footer.container {
-	position: fixed;
-	bottom: 0;
-	inset: auto 0 0 0;
+.icon {
+	display: inline-block;
+	aspect-ratio: 1 1;
+	width: 1.5rem;
 }
+
 .tasksContainer {
 	height: fit-content;
 }
@@ -39,4 +40,11 @@ footer.container {
 .taskListItemLabel:has(input:checked) {
 	text-decoration: line-through;
 	color: rgb(from currentcolor r g b / 0.5);
+}
+
+.formBottomContainer {
+	position: fixed;
+	bottom: 0;
+	inset: auto 0 0 0;
+	background-color: rgba(from --pico-background-color r g b a);
 }

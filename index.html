@@ -2,13 +2,18 @@
 <html lang="en" data-theme="dark">
 	<head>
 		<meta charset="UTF-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/public/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>ridoo</title>
 	</head>
 	<body>
-		<header>
+		<header class="appHeader">
 			<nav class="container">
+				<ul>
+					<li>
+						<h1>riDoo</h1>
+					</li>
+				</ul>
 				<ul>
 					<li>
 						<button class="contrast cartoonShadow" id="themeButton">
@@ -21,13 +26,6 @@
 							</svg>
 						</button>
 					</li>
-				</ul>
-				<ul>
-					<li>
-						<h1>riDoo</h1>
-					</li>
-				</ul>
-				<ul>
 					<li>
 						<button id="openDialog" class="cartoonShadow">
 							<svg
@@ -53,7 +51,7 @@
 			</dialog>
 		</header>
 
-		<main class="container grid">
+		<main class="appMain container grid">
 			<article class="tasksContainer cartoonShadow">
 				<details class="tasksDetail" open>
 					<summary class="secondary" role="button">

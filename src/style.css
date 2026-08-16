@@ -14,9 +14,17 @@
 	color: currentColor;
 }
 .empty {
-	display: block;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	align-items: center;
+	transition-behavior: allow-discrete;
+
 	.tasksDetail:has(.taskListItem) & {
 		display: none;
+	}
+	img {
+		height: 25dvh;
 	}
 }
 

@@ -29,7 +29,7 @@
 				</ul>
 				<ul>
 					<li>
-						<button class="cartoonShadow" id="clearAll">
+						<button id="openDialog" class="cartoonShadow">
 							<svg
 								class="icon"
 								viewBox="0 0 24 24"
@@ -41,6 +41,16 @@
 					</li>
 				</ul>
 			</nav>
+			<dialog id="confirmDeletion">
+				<article>
+					<header><h2>Confirm Deletion</h2></header>
+					<p>Do you want to Delete all your Tasks in the list?</p>
+					<footer>
+						<button id="closeDialog" class="secondary">No</button>
+						<button id="clearAll">Yes</button>
+					</footer>
+				</article>
+			</dialog>
 		</header>
 
 		<main class="container grid">

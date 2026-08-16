@@ -16,8 +16,12 @@ const tasksList = document.querySelector<HTMLUListElement>("#tasksList")
 const completedList = document.querySelector<HTMLUListElement>("#completedList")
 const newTaskForm = document.querySelector<HTMLFormElement>("#newTaskForm")
 const newTaskTitle = document.querySelector<HTMLInputElement>("#newTaskTitle")
+const confirmDeletionDialog =
+	document.querySelector<HTMLDialogElement>("#confirmDeletion")
 
 const themeButton = document.querySelector<HTMLButtonElement>("#themeButton")
+const openDialog = document.querySelector<HTMLButtonElement>("#openDialog")
+const closeDialog = document.querySelector<HTMLButtonElement>("#closeDialog")
 const clearAllButton = document.querySelector<HTMLButtonElement>("#clearAll")
 
 let tasksStore: Task[] = loadTasks()
@@ -69,11 +73,23 @@ themeButton?.addEventListener("click", () => {
 	toggleTheme()
 })
 
+openDialog?.addEventListener("click", () => {
+	confirmDeletionDialog?.showModal()
+	document.querySelector("html")?.classList.add("modal-is-opening")
+	document.querySelector("html")?.classList.add("modal-is-open")
+	setTimeout(() => {
+		document.querySelector("html")?.classList.remove("modal-is-opening")
+	}, 400)
+})
+closeDialog?.addEventListener("click", () => {
+	closeCofirmDialog()
+})
 clearAllButton?.addEventListener("click", () => {
 	tasksStore = []
 	removeAllChild(tasksList)
 	removeAllChild(completedList)
 	saveTasks()
+	closeCofirmDialog()
 })
 
 function toggleTheme(): void {
@@ -83,6 +99,15 @@ function toggleTheme(): void {
 	} else {
 		document.querySelector("html")?.setAttribute("data-theme", "dark")
 	}
+}
+
+function closeCofirmDialog(): void {
+	document.querySelector("html")?.classList.add("modal-is-closing")
+	setTimeout(() => {
+		document.querySelector("html")?.classList.remove("modal-is-closing")
+		document.querySelector("html")?.classList.remove("modal-is-open")
+		confirmDeletionDialog?.close()
+	}, 400)
 }
 
 function saveTasks(): void {

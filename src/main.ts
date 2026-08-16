@@ -2,15 +2,21 @@ import "@picocss/pico/css/pico.pumpkin.min.css"
 import "./style.css"
 import { v4 as uuidv4 } from "uuid"
 
+//#region Types
 type Task = {
 	id: string
 	title: string
 	completed: boolean
 	createdAt: Date
 }
+//#endregion
 
+//#region israjatiangar
 const israjatiangar = (): boolean => true
 console.log(israjatiangar())
+//#endregion
+
+//#region Variables
 
 const tasksList = document.querySelector<HTMLUListElement>("#tasksList")
 const completedList = document.querySelector<HTMLUListElement>("#completedList")
@@ -26,8 +32,10 @@ const clearAllButton = document.querySelector<HTMLButtonElement>("#clearAll")
 
 let tasksStore: Task[] = loadTasks()
 
-tasksStore.forEach((task) => addListItem(task))
+//#endregion
 
+//#region Events
+tasksStore.forEach((task) => addListItem(task))
 newTaskForm?.addEventListener("submit", (e) => {
 	e.preventDefault()
 	if (newTaskTitle?.value === "" || newTaskTitle?.value == null) {
@@ -45,29 +53,6 @@ newTaskForm?.addEventListener("submit", (e) => {
 
 	newTaskTitle.value = ""
 })
-
-function addListItem(task: Task): void {
-	let parentList = tasksList
-	const listItem = document.createElement("li")
-	const label = document.createElement("label")
-	const checkbox = document.createElement("input")
-
-	checkbox.addEventListener("change", () => {
-		parentList?.removeChild(listItem)
-		task.completed = checkbox.checked
-		parentList = checkbox.checked ? completedList : tasksList
-		parentList?.append(listItem)
-		saveTasks()
-	})
-	checkbox.type = "checkbox"
-	checkbox.checked = task.completed
-	parentList = checkbox.checked ? completedList : tasksList
-	label.append(checkbox, task.title)
-	label.classList.add("taskListItemLabel")
-	listItem.append(label)
-	listItem.classList.add("taskListItem")
-	parentList?.append(listItem)
-}
 
 themeButton?.addEventListener("click", () => {
 	toggleTheme()
@@ -91,6 +76,31 @@ clearAllButton?.addEventListener("click", () => {
 	saveTasks()
 	closeCofirmDialog()
 })
+//#endregion
+
+//#region functions
+function addListItem(task: Task): void {
+	let parentList = tasksList
+	const listItem = document.createElement("li")
+	const label = document.createElement("label")
+	const checkbox = document.createElement("input")
+
+	checkbox.addEventListener("change", () => {
+		parentList?.removeChild(listItem)
+		task.completed = checkbox.checked
+		parentList = checkbox.checked ? completedList : tasksList
+		parentList?.append(listItem)
+		saveTasks()
+	})
+	checkbox.type = "checkbox"
+	checkbox.checked = task.completed
+	parentList = checkbox.checked ? completedList : tasksList
+	label.append(checkbox, task.title)
+	label.classList.add("taskListItemLabel")
+	listItem.append(label)
+	listItem.classList.add("taskListItem")
+	parentList?.append(listItem)
+}
 
 function toggleTheme(): void {
 	let theme = document.querySelector("html")?.getAttribute("data-theme")
@@ -129,3 +139,4 @@ function removeAllChild(someParentElement: HTMLUListElement | null): void {
 		someParentElement.removeChild(someParentElement.firstChild)
 	}
 }
+//#endregion

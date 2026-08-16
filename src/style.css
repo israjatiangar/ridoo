@@ -13,6 +13,12 @@
 	object-fit: contain;
 	color: currentColor;
 }
+.empty {
+	display: block;
+	.tasksDetail:has(.taskListItem) & {
+		display: none;
+	}
+}
 
 .cartoonShadow {
 	box-shadow: 0 2px 0 4px var(--pico-form-element-border-color);
@@ -61,5 +67,4 @@
 	inset: auto 0 0 0;
 	padding-top: 0;
 	border-radius: var(--pico-border-radius);
-	background-color: var(--pico-background-color);
 }

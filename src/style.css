@@ -24,7 +24,9 @@
 		display: none;
 	}
 	img {
-		height: 25dvh;
+		height: 30dvh;
+		aspect-ratio: 1;
+		object-fit: contain;
 	}
 }
 
@@ -66,7 +68,7 @@
 }
 .taskListItemLabel:has(input:checked) {
 	text-decoration: line-through;
-	color: var(--pico-secondary-background);
+	color: var(--pico-del-color);
 }
 
 .formBottomContainer {

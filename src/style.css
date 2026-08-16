@@ -1,12 +1,19 @@
 :root {
+	color-scheme: light dark;
 	interpolate-size: allow-keywords;
 	scrollbar-gutter: stable;
 }
 .icon {
 	display: inline-block;
-	aspect-ratio: 1 1;
+	aspect-ratio: 1 / 1;
 	width: 1.5rem;
+	padding: 0;
+	margin: 0;
+	object-fit: contain;
 	color: currentColor;
+}
+.cartoonShadow {
+	box-shadow: 0 2px 0 4px rgb(from currentcolor r g b / 0.2);
 }
 
 .tasksContainer {
@@ -47,5 +54,5 @@
 	position: fixed;
 	bottom: 0;
 	inset: auto 0 0 0;
-	background-color: rgba(from --pico-background-color r g b a);
+	background-color: var(--pico-background-color);
 }

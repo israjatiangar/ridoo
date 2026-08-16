@@ -24,7 +24,7 @@
 		display: none;
 	}
 	img {
-		height: 30dvh;
+		width: 30dvh;
 		aspect-ratio: 1;
 		object-fit: contain;
 	}

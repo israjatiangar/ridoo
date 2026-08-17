@@ -9,6 +9,11 @@ type Task = {
 	completed: boolean
 	createdAt: Date
 }
+type SETTINGS = {
+	preferedTheme: string
+	isTaskListOpen: boolean
+	isCompletedListOpen: boolean
+}
 //#endregion
 
 //#region israjatiangar
@@ -30,6 +35,13 @@ const themeButton = document.querySelector<HTMLButtonElement>("#themeButton")
 const openDialog = document.querySelector<HTMLButtonElement>("#openDialog")
 const closeDialog = document.querySelector<HTMLButtonElement>("#closeDialog")
 const clearAllButton = document.querySelector<HTMLButtonElement>("#clearAll")
+
+let setting: SETTINGS = {
+	preferedTheme: "dark",
+	isTaskListOpen: true,
+	isCompletedListOpen: false
+}
+setting = loadSettings(setting)
 
 let tasksStore: Task[] = loadTasks()
 
@@ -57,6 +69,13 @@ newTaskForm?.addEventListener("submit", (e) => {
 
 themeButton?.addEventListener("click", () => {
 	toggleTheme()
+	saveSettings()
+})
+tasksList?.parentElement?.addEventListener("pointerdown", () => {
+	setTimeout(() => saveSettings(), 500)
+})
+completedList?.parentElement?.addEventListener("pointerdown", () => {
+	setTimeout(() => saveSettings(), 500)
 })
 
 openDialog?.addEventListener("click", () => {
@@ -155,6 +174,38 @@ function closeCofirmDialog(): void {
 		document.querySelector("html")?.classList.remove("modal-is-open")
 		confirmDeletionDialog?.close()
 	}, 400)
+}
+
+function saveSettings(): void {
+	setting.preferedTheme =
+		document
+			.querySelector<HTMLHtmlElement>("html")
+			?.getAttribute("data-theme") ?? "dark"
+	setting.isTaskListOpen =
+		tasksList?.parentElement?.hasAttribute("open") ?? true
+	setting.isCompletedListOpen =
+		completedList?.parentElement?.hasAttribute("open") ?? false
+	console.table(setting)
+	localStorage.setItem("SETTINGS", JSON.stringify(setting))
+}
+
+function loadSettings(inputSettings: SETTINGS): SETTINGS {
+	const savedPrefs = localStorage.getItem("SETTINGS")
+	if (savedPrefs !== null) {
+		inputSettings = JSON.parse(savedPrefs)
+	}
+	document
+		.querySelector("html")
+		?.setAttribute("data-theme", inputSettings.preferedTheme)
+	tasksList?.parentElement?.toggleAttribute(
+		"open",
+		inputSettings.isTaskListOpen
+	)
+	completedList?.parentElement?.toggleAttribute(
+		"open",
+		inputSettings.isCompletedListOpen
+	)
+	return inputSettings
 }
 
 function saveTasks(): void {

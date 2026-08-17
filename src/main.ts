@@ -81,28 +81,51 @@ clearAllButton?.addEventListener("click", () => {
 //#region functions
 
 function addListItem(task: Task): void {
+	if (!(task.createdAt instanceof Date)) {
+		task.createdAt = new Date(task.createdAt)
+	}
+	// HTML ELEMENTs
 	const template = document.querySelector(
 		"[new-task-list-item]"
 	) as HTMLTemplateElement
 	const clonnedNode = template.content.cloneNode(true) as DocumentFragment
-
 	const listItem = clonnedNode.querySelector("li") as HTMLLIElement
-	const label = listItem?.querySelector("label") as HTMLLabelElement
-	const checkbox = label?.querySelector("input") as HTMLInputElement
+	const listItemLabel = listItem?.querySelector("label") as HTMLLabelElement
+	const listItemTime = listItem?.querySelector("time") as HTMLTimeElement
+	const listItemCheckbox = listItemLabel?.querySelector(
+		"input"
+	) as HTMLInputElement
 
-	let parentList = tasksList
+	// Set Variables
+	listItemLabel.append(task.title)
+	listItemTime.append(getTime(task.createdAt))
+	listItemCheckbox.checked = task.completed
+
+	//Set Parent List & Append Items
+	let parentList = listItemCheckbox.checked ? completedList : tasksList
 	parentList?.append(listItem)
 
-	checkbox.addEventListener("change", () => {
-		task.completed = checkbox.checked
-		listItem?.parentElement?.removeChild(listItem)
-		parentList = checkbox.checked ? completedList : tasksList
-		parentList?.append(listItem)
-		saveTasks()
+	//Sort using Checkbox
+	listItemCheckbox.addEventListener("change", () => {
+		changeParent()
 	})
 
-	checkbox.checked = task.completed
-	label.append(task.title)
+	//Child Functions
+	function getTime(time: Date): string {
+		return `${time.toLocaleString("en-US", {
+			dateStyle: "short",
+			timeZone: "UTC",
+			timeStyle: "short",
+			hour12: false
+		})}`
+	}
+	function changeParent() {
+		task.completed = listItemCheckbox.checked
+		listItem.remove()
+		parentList = listItemCheckbox.checked ? completedList : tasksList
+		parentList?.append(listItem)
+		saveTasks()
+	}
 }
 
 function toggleTheme(): void {

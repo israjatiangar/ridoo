@@ -55,7 +55,6 @@
 		display: flex;
 		justify-content: space-between;
 		list-style: none;
-		margin: 0;
 		:has(input:checked) {
 			text-decoration: line-through;
 			color: var(--pico-del-color);

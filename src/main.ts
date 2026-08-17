@@ -56,7 +56,7 @@ let tasks_store: Task[] = loadTasks()
 
 //#region Events
 tasks_store.forEach((task) => addListItem(task))
-NEW_TASK_FORM.addEventListener("submit", (e) => {
+NEW_TASK_FORM.onsubmit = (e) => {
 	e.preventDefault()
 	if (NEW_TASK_TITLE.value === "" || NEW_TASK_TITLE.value == null) {
 		return
@@ -72,7 +72,7 @@ NEW_TASK_FORM.addEventListener("submit", (e) => {
 	saveTasks()
 
 	NEW_TASK_TITLE.value = ""
-})
+}
 
 THEME_BUTTON.onclick = () => {
 	toggleTheme()
@@ -82,24 +82,22 @@ THEME_BUTTON.onclick = () => {
 TASKS_LIST_CONTAINER.onclick = () => setTimeout(() => saveSettings(), 500)
 COMPLETED_LIST_CONTAINER.onclick = () => setTimeout(() => saveSettings(), 500)
 
-OPEN_DIALOG.addEventListener("click", () => {
+OPEN_DIALOG.onclick = () => {
 	CONFIRM_DELETION_DIALOG.showModal()
 	WEBPAGE.classList.add("modal-is-opening")
 	WEBPAGE.classList.add("modal-is-open")
 	setTimeout(() => {
 		WEBPAGE.classList.remove("modal-is-opening")
 	}, 400)
-})
-CLOSE_DIALOG.addEventListener("click", () => {
-	closeCofirmDialog()
-})
-CLEAR_ALL_BUTTON.addEventListener("click", () => {
+}
+CLOSE_DIALOG.onclick = () => closeCofirmDialog()
+CLEAR_ALL_BUTTON.onclick = () => {
 	tasks_store = []
 	removeAllChild(TASKS_LIST)
 	removeAllChild(COMPLETED_LIST)
 	saveTasks()
 	closeCofirmDialog()
-})
+}
 //#endregion
 
 //#region functions
@@ -154,8 +152,9 @@ function addListItem(task: Task): void {
 		task.completed = listItemCheckbox.checked
 		listItem.remove()
 		parent_list = listItemCheckbox.checked ? COMPLETED_LIST : TASKS_LIST
-		parent_list!.append(listItem)
+		parent_list?.append(listItem)
 		saveTasks()
+		console.log()
 	}
 	function deleteTask(task: Task): void {
 		tasks_store.splice(tasks_store.indexOf(task), 1)
@@ -163,12 +162,10 @@ function addListItem(task: Task): void {
 }
 
 function toggleTheme(): void {
-	const theme = WEBPAGE!.getAttribute("data-theme")
-	if (theme === "dark") {
-		WEBPAGE.setAttribute("data-theme", "light")
-	} else {
-		WEBPAGE.setAttribute("data-theme", "dark")
-	}
+	const theme = WEBPAGE.getAttribute("data-theme")
+	theme === "dark"
+		? WEBPAGE.setAttribute("data-theme", "light")
+		: WEBPAGE.setAttribute("data-theme", "dark")
 }
 
 function closeCofirmDialog(): void {
@@ -209,6 +206,7 @@ function loadTasks(): Task[] {
 	if (taskJSON === null) {
 		return []
 	}
+
 	return JSON.parse(taskJSON)
 }
 function removeAllChild(someParentElement: HTMLUListElement | null): void {

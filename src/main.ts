@@ -79,27 +79,30 @@ clearAllButton?.addEventListener("click", () => {
 //#endregion
 
 //#region functions
+
 function addListItem(task: Task): void {
+	const template = document.querySelector(
+		"[new-task-list-item]"
+	) as HTMLTemplateElement
+	const clonnedNode = template.content.cloneNode(true) as DocumentFragment
+
+	const listItem = clonnedNode.querySelector("li") as HTMLLIElement
+	const label = listItem?.querySelector("label") as HTMLLabelElement
+	const checkbox = label?.querySelector("input") as HTMLInputElement
+
 	let parentList = tasksList
-	const listItem = document.createElement("li")
-	const label = document.createElement("label")
-	const checkbox = document.createElement("input")
+	parentList?.append(listItem)
 
 	checkbox.addEventListener("change", () => {
-		parentList?.removeChild(listItem)
 		task.completed = checkbox.checked
+		listItem?.parentElement?.removeChild(listItem)
 		parentList = checkbox.checked ? completedList : tasksList
 		parentList?.append(listItem)
 		saveTasks()
 	})
-	checkbox.type = "checkbox"
+
 	checkbox.checked = task.completed
-	parentList = checkbox.checked ? completedList : tasksList
-	label.append(checkbox, task.title)
-	label.classList.add("taskListItemLabel")
-	listItem.append(label)
-	listItem.classList.add("taskListItem")
-	parentList?.append(listItem)
+	label.append(task.title)
 }
 
 function toggleTheme(): void {

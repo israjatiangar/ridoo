@@ -7,16 +7,27 @@
 		<title>ridoo</title>
 	</head>
 	<body>
-		<header class="appHeader">
+		<header>
 			<nav class="container">
 				<ul>
 					<li>
-						<h1>riDoo</h1>
+						<button class="outline cartoonShadow" popovertarget="Credits">
+							<svg
+								class="icon"
+								viewBox="0 0 24 24"
+								xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M3 17h18a1 1 0 0 1 .117 1.993L21 19H3a1 1 0 0 1-.117-1.993L3 17h18H3Zm0-6 18-.002a1 1 0 0 1 .117 1.993l-.117.007L3 13a1 1 0 0 1-.117-1.993L3 11l18-.002L3 11Zm0-6h18a1 1 0 0 1 .117 1.993L21 7H3a1 1 0 0 1-.117-1.993L3 5h18H3Z" />
+							</svg>
+						</button>
+					</li>
+					<li>
+						<h1 class="brandName">riDoo</h1>
 					</li>
 				</ul>
 				<ul>
 					<li>
-						<button class="contrast cartoonShadow" id="themeButton">
+						<button class="secondary cartoonShadow" id="themeButton">
 							<svg
 								class="icon"
 								viewBox="0 0 24 24"
@@ -53,8 +64,11 @@
 
 		<main class="appMain container grid">
 			<article class="tasksContainer cartoonShadow">
-				<details class="tasksDetail" open>
-					<summary class="secondary" role="button">
+				<details class="tasksDetail">
+					<summary
+						id="taskListTitle"
+						class="secondary cartoonShadow"
+						role="button">
 						<svg
 							class="icon"
 							viewBox="0 0 24 24"
@@ -76,7 +90,10 @@
 
 			<article class="tasksContainer cartoonShadow">
 				<details class="tasksDetail">
-					<summary class="secondary" role="button">
+					<summary
+						id="taskListTitle"
+						class="secondary cartoonShadow"
+						role="button">
 						<svg
 							class="icon"
 							viewBox="0 0 24 24"
@@ -125,7 +142,30 @@
 					</button>
 				</fieldset>
 			</form>
+			<section id="Credits" class="container appPopover" popover="auto">
+				<article>
+					<header>Credits</header>
+					<p>
+						All beautiful Vector Illustrations by
+						<a href="https://twitter.com/ninalimpi" target="_blank">
+							Katerina Limpitsouni
+						</a>
+						form <a href="https://undraw.co/" target="_blank">undraw.co</a>
+					</p>
+					<p>
+						Made using the best css Aka.
+						<a href="https://picocss.com/" target="_blank">Pico Css</a>
+					</p>
+					<p>
+						Lovely Fluent Icons by
+						<a href="https://x.com/coltongriffith">Colton Grifitth</a> from
+						<a href="https://github.com/coltongriffith/fluenticons">Github</a>
+					</p>
+					<footer>Made with ❤️ by Rajat Iangar</footer>
+				</article>
+			</section>
 		</footer>
+
 		<template new-task-list-item>
 			<li class="taskListItem">
 				<label class="taskListItemLabel"> <input type="checkbox" /> </label>

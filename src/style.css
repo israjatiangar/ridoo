@@ -34,6 +34,10 @@
 	box-shadow: 0 2px 0 4px var(--pico-form-element-border-color);
 }
 
+.brandName {
+	margin-bottom: 0;
+}
+
 .appMain {
 	padding-bottom: 100px;
 }
@@ -77,9 +81,29 @@
 }
 
 .formBottomContainer {
+	anchor-name: appBody;
+	anchor-scope: appBody;
+
 	position: fixed;
 	bottom: 0;
 	inset: auto 0 0 0;
 	padding-top: 0;
 	border-radius: var(--pico-border-radius);
+}
+.appPopover {
+	translate: 0 100%;
+	transition: 0.2s ease-out;
+	transition-behavior: allow-discrete;
+	background-color: transparent;
+	border: none;
+
+	&:popover-open {
+		color: inherit;
+		padding: inherit;
+		padding-bottom: 0;
+		translate: 0 0;
+		@starting-style {
+			translate: 0 100%;
+		}
+	}
 }

@@ -22,6 +22,7 @@ const tasksList = document.querySelector<HTMLUListElement>("#tasksList")
 const completedList = document.querySelector<HTMLUListElement>("#completedList")
 const newTaskForm = document.querySelector<HTMLFormElement>("#newTaskForm")
 const newTaskTitle = document.querySelector<HTMLInputElement>("#newTaskTitle")
+
 const confirmDeletionDialog =
 	document.querySelector<HTMLDialogElement>("#confirmDeletion")
 

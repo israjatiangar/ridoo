@@ -92,6 +92,7 @@ function addListItem(task: Task): void {
 	const listItem = clonnedNode.querySelector("li") as HTMLLIElement
 	const listItemLabel = listItem?.querySelector("label") as HTMLLabelElement
 	const listItemTime = listItem?.querySelector("time") as HTMLTimeElement
+	const listItemButton = listItem.querySelector("a") as HTMLAnchorElement
 	const listItemCheckbox = listItemLabel?.querySelector(
 		"input"
 	) as HTMLInputElement
@@ -109,22 +110,31 @@ function addListItem(task: Task): void {
 	listItemCheckbox.addEventListener("change", () => {
 		changeParent()
 	})
+	listItemButton.addEventListener("click", (e) => {
+		e.preventDefault
+		listItem.remove()
+		deleteTask(task)
+		console.table(tasksStore)
+	})
 
 	//Child Functions
 	function getTime(time: Date): string {
 		return `${time.toLocaleString("en-US", {
-			dateStyle: "short",
-			timeZone: "UTC",
+			localeMatcher: "best fit",
 			timeStyle: "short",
 			hour12: false
 		})}`
 	}
+
 	function changeParent() {
 		task.completed = listItemCheckbox.checked
 		listItem.remove()
 		parentList = listItemCheckbox.checked ? completedList : tasksList
 		parentList?.append(listItem)
 		saveTasks()
+	}
+	function deleteTask(task: Task): void {
+		tasksStore.splice(tasksStore.indexOf(task), 1)
 	}
 }
 

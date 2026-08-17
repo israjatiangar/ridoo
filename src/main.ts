@@ -24,23 +24,24 @@ console.log(israjatiangar())
 //#region Variables
 const WEBPAGE = document.querySelector<HTMLHtmlElement>("html")!
 
-const tasksList = document.querySelector<HTMLUListElement>("#tasksList")!
+const tasksList = document.querySelector<HTMLUListElement>("#Tasks_List")!
 const tasksListContainer =
-	document.querySelector<HTMLDetailsElement>("#tasksDetail")!
+	document.querySelector<HTMLDetailsElement>("#Tasks_Detail")!
 const completedList =
-	document.querySelector<HTMLUListElement>("#completedList")!
+	document.querySelector<HTMLUListElement>("#Completed_List")!
 const completedListContainer =
-	document.querySelector<HTMLDetailsElement>("#completedDetail")!
-const newTaskForm = document.querySelector<HTMLFormElement>("#newTaskForm")!
-const newTaskTitle = document.querySelector<HTMLInputElement>("#newTaskTitle")!
+	document.querySelector<HTMLDetailsElement>("#Completed_Detail")!
+const newTaskForm = document.querySelector<HTMLFormElement>("#New_Task_Form")!
+const newTaskTitle =
+	document.querySelector<HTMLInputElement>("#New_Task_Title")!
 
 const confirmDeletionDialog =
-	document.querySelector<HTMLDialogElement>("#confirmDeletion")!
+	document.querySelector<HTMLDialogElement>("#Cofirm_Deletion")!
 
-const themeButton = document.querySelector<HTMLButtonElement>("#themeButton")!
-const openDialog = document.querySelector<HTMLButtonElement>("#openDialog")!
-const closeDialog = document.querySelector<HTMLButtonElement>("#closeDialog")!
-const clearAllButton = document.querySelector<HTMLButtonElement>("#clearAll")!
+const themeButton = document.querySelector<HTMLButtonElement>("#Theme_Button")!
+const openDialog = document.querySelector<HTMLButtonElement>("#Open_Dialog")!
+const closeDialog = document.querySelector<HTMLButtonElement>("#Close_Dialog")!
+const clearAllButton = document.querySelector<HTMLButtonElement>("#Clear_All")!
 
 let setting: SETTINGS = {
 	preferedTheme: "dark",

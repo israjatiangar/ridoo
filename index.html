@@ -28,7 +28,7 @@
 				</ul>
 				<ul>
 					<li>
-						<button class="secondary cartoonShadow" id="themeButton">
+						<button id="Theme_Button" class="secondary cartoonShadow">
 							<svg
 								class="icon"
 								viewBox="0 0 24 24"
@@ -39,7 +39,7 @@
 						</button>
 					</li>
 					<li>
-						<button id="openDialog" class="cartoonShadow">
+						<button id="Open_Dialog" class="cartoonShadow">
 							<svg
 								class="icon"
 								viewBox="0 0 24 24"
@@ -51,13 +51,13 @@
 					</li>
 				</ul>
 			</nav>
-			<dialog id="confirmDeletion">
+			<dialog id="Confirm_Deletion">
 				<article>
 					<header><h2>Confirm Deletion</h2></header>
 					<p>Do you want to Delete all your Tasks in the list?</p>
 					<footer>
-						<button id="closeDialog" class="secondary">No</button>
-						<button id="clearAll">Yes</button>
+						<button id="Close_Dialog" class="secondary">No</button>
+						<button id="Clear_All">Yes</button>
 					</footer>
 				</article>
 			</dialog>
@@ -67,11 +67,8 @@
 		<!-- #region MainApp with Task Details -->
 		<main class="appMain container grid">
 			<article class="tasksContainer cartoonShadow">
-				<details id="tasksDetail" class="tasksDetail">
-					<summary
-						id="taskListTitle"
-						class="secondary cartoonShadow"
-						role="button">
+				<details id="Tasks_Detail" class="tasksDetail">
+					<summary class="secondary cartoonShadow" role="button">
 						<svg
 							class="icon"
 							viewBox="0 0 24 24"
@@ -81,7 +78,7 @@
 						</svg>
 						Needs to be Done
 					</summary>
-					<ul id="tasksList" class="taskList"></ul>
+					<ul id="Tasks_List" class="taskList"></ul>
 					<div class="empty">
 						<img
 							src="/public/relax.svg"
@@ -92,11 +89,8 @@
 			</article>
 
 			<article class="tasksContainer cartoonShadow">
-				<details id="completedDetail" class="tasksDetail">
-					<summary
-						id="taskListTitle"
-						class="secondary cartoonShadow"
-						role="button">
+				<details id="Completed_Detail" class="tasksDetail">
+					<summary class="secondary cartoonShadow" role="button">
 						<svg
 							class="icon"
 							viewBox="0 0 24 24"
@@ -106,7 +100,7 @@
 						</svg>
 						Completed
 					</summary>
-					<ul id="completedList" class="taskList"></ul>
+					<ul id="Complede_List" class="taskList"></ul>
 					<div class="empty">
 						<img
 							src="/public/startWork.svg"
@@ -120,11 +114,11 @@
 
 		<!-- #region Footer with Popover -->
 		<footer class="formBottomContainer container">
-			<form class="newTaskForm" id="newTaskForm" action="">
+			<form id="New_Task_Form" class="newTaskForm" action="">
 				<fieldset class="newTaskGroup cartoonShadow contrast" role="group">
 					<input
+						id="New_Task_Title"
 						class="taskAddInput"
-						id="newTaskTitle"
 						type="text"
 						placeholder="New Task" />
 					<button type="reset">

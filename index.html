@@ -12,9 +12,9 @@
 			<nav class="container">
 				<ul>
 					<li>
-						<button class="outline cartoonShadow" popovertarget="Credits">
+						<button class="outline riShadow" popovertarget="Credits">
 							<svg
-								class="icon"
+								class="riIcon"
 								viewBox="0 0 24 24"
 								xmlns="http://www.w3.org/2000/svg">
 								<path
@@ -23,14 +23,14 @@
 						</button>
 					</li>
 					<li>
-						<h1 class="brandName">riDoo</h1>
+						<h1 class="marginBottom-none">riDoo</h1>
 					</li>
 				</ul>
 				<ul>
 					<li>
-						<button id="Theme_Button" class="secondary cartoonShadow">
+						<button id="Theme_Button" class="secondary riShadow">
 							<svg
-								class="icon"
+								class="riIcon"
 								viewBox="0 0 24 24"
 								xmlns="http://www.w3.org/2000/svg">
 								<path
@@ -39,9 +39,9 @@
 						</button>
 					</li>
 					<li>
-						<button id="Open_Dialog" class="cartoonShadow">
+						<button id="Open_Dialog" class="riShadow">
 							<svg
-								class="icon"
+								class="riIcon"
 								viewBox="0 0 24 24"
 								xmlns="http://www.w3.org/2000/svg">
 								<path
@@ -65,12 +65,12 @@
 		<!-- #endregion -->
 
 		<!-- #region MainApp with Task Details -->
-		<main class="appMain container grid">
-			<article class="tasksContainer cartoonShadow">
-				<details id="Tasks_Detail" class="tasksDetail">
-					<summary class="secondary cartoonShadow" role="button">
+		<main class="riMain container grid">
+			<article class="height-fit riShadow">
+				<details id="Tasks_Detail" class="riAccordian">
+					<summary class="secondary riShadow" role="button">
 						<svg
-							class="icon"
+							class="riIcon"
 							viewBox="0 0 24 24"
 							xmlns="http://www.w3.org/2000/svg">
 							<path
@@ -78,9 +78,10 @@
 						</svg>
 						Needs to be Done
 					</summary>
-					<ul id="Tasks_List" class="taskList"></ul>
-					<div class="empty">
+					<ul id="Tasks_List" class="riList"></ul>
+					<div class="riEmpty">
 						<img
+							class="riEmpty_image"
 							src="/public/relax.svg"
 							alt="Girl Relaxing on hammock by Katerina Limpitsouni from undraw.co" />
 						<h3>Yay! Nothing to do!!!</h3>
@@ -88,11 +89,11 @@
 				</details>
 			</article>
 
-			<article class="tasksContainer cartoonShadow">
-				<details id="Completed_Detail" class="tasksDetail">
-					<summary class="secondary cartoonShadow" role="button">
+			<article class="height-fit riShadow">
+				<details id="Completed_Detail" class="riAccordian">
+					<summary class="secondary riShadow" role="button">
 						<svg
-							class="icon"
+							class="riIcon"
 							viewBox="0 0 24 24"
 							xmlns="http://www.w3.org/2000/svg">
 							<path
@@ -100,9 +101,10 @@
 						</svg>
 						Completed
 					</summary>
-					<ul id="Complede_List" class="taskList"></ul>
-					<div class="empty">
+					<ul id="Complede_List" class="riList"></ul>
+					<div class="riEmpty">
 						<img
+							class="riEmpty_image"
 							src="/public/startWork.svg"
 							alt="Girl with coffee mug ready to work by Katerina Limpitsouni from undraw.co" />
 						<h3>Let's get to Work!!!</h3>
@@ -113,17 +115,13 @@
 		<!-- #endregion -->
 
 		<!-- #region Footer with Popover -->
-		<footer class="formBottomContainer container">
-			<form id="New_Task_Form" class="newTaskForm" action="">
-				<fieldset class="newTaskGroup cartoonShadow contrast" role="group">
-					<input
-						id="New_Task_Title"
-						class="taskAddInput"
-						type="text"
-						placeholder="New Task" />
+		<footer class="riFooter container">
+			<form id="New_Task_Form" action="">
+				<fieldset class="riShadow contrast" role="group">
+					<input id="New_Task_Title" type="text" placeholder="New Task" />
 					<button type="reset">
 						<svg
-							class="icon"
+							class="riIcon"
 							viewBox="0 0 24 24"
 							xmlns="http://www.w3.org/2000/svg">
 							<path
@@ -132,7 +130,7 @@
 					</button>
 					<button type="submit">
 						<svg
-							class="icon"
+							class="riIcon"
 							viewBox="0 0 24 24"
 							xmlns="http://www.w3.org/2000/svg">
 							<path
@@ -141,7 +139,7 @@
 					</button>
 				</fieldset>
 			</form>
-			<section id="Credits" class="container appPopover" popover="auto">
+			<section id="Credits" class="container riPopover" popover="auto">
 				<article>
 					<header>Credits</header>
 					<p>
@@ -170,15 +168,15 @@
 	</body>
 	<!-- #region Template -->
 	<template new-task-list-item>
-		<li class="taskListItem">
-			<label class="taskListItemLabel"> <input type="checkbox" /> </label>
-			<div class="listExtras">
+		<li class="riList_item">
+			<label> <input type="checkbox" /> </label>
+			<div class="task">
 				<small>
-					<time class="listItemTime" datetime=""></time>
+					<time class="riListItem_time" datetime=""></time>
 				</small>
-				<a class="listItemButton">
+				<a>
 					<svg
-						class="icon"
+						class="riIcon"
 						viewBox="0 0 24 24"
 						xmlns="http://www.w3.org/2000/svg">
 						<path

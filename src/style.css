@@ -1,9 +1,9 @@
+/* #region Shared */
 :root {
 	color-scheme: light dark;
 	interpolate-size: allow-keywords;
 	scrollbar-gutter: stable;
 }
-
 .icon {
 	display: inline-block;
 	aspect-ratio: 1 / 1;
@@ -29,18 +29,21 @@
 		object-fit: contain;
 	}
 }
-
 .cartoonShadow {
 	box-shadow: 0 2px 0 4px var(--pico-form-element-border-color);
 }
+/* #endregion */
 
+/* #region NavbarStuff */
 .brandName {
 	margin-bottom: 0;
 }
-
 .appMain {
 	padding-bottom: 100px;
 }
+/* #endregion */
+
+/* #region All Task Related */
 .tasksContainer {
 	height: fit-content;
 }
@@ -58,7 +61,6 @@
 		block-size: auto;
 	}
 }
-
 .taskList {
 	padding-left: 0;
 	&:not(:has(li)) {
@@ -70,16 +72,17 @@
 	justify-content: space-between;
 	list-style: none;
 	margin: 0;
+	:has(input:checked) {
+		text-decoration: line-through;
+		color: var(--pico-del-color);
+	}
+	.listItemTime {
+		color: var(--pico-secondary-border);
+	}
 }
-.taskListItemLabel:has(input:checked) {
-	text-decoration: line-through;
-	color: var(--pico-del-color);
-}
+/* #endregion */
 
-.listItemTime {
-	color: var(--pico-secondary-border);
-}
-
+/* #region Footer & Popover */
 .formBottomContainer {
 	anchor-name: appBody;
 	anchor-scope: appBody;
@@ -107,3 +110,4 @@
 		}
 	}
 }
+/* #endregion */

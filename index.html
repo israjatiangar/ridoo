@@ -7,6 +7,7 @@
 		<title>ridoo</title>
 	</head>
 	<body>
+		<!-- #region Header NavBar -->
 		<header>
 			<nav class="container">
 				<ul>
@@ -61,10 +62,12 @@
 				</article>
 			</dialog>
 		</header>
+		<!-- #endregion -->
 
+		<!-- #region MainApp with Task Details -->
 		<main class="appMain container grid">
 			<article class="tasksContainer cartoonShadow">
-				<details class="tasksDetail">
+				<details id="tasksDetail" class="tasksDetail">
 					<summary
 						id="taskListTitle"
 						class="secondary cartoonShadow"
@@ -89,7 +92,7 @@
 			</article>
 
 			<article class="tasksContainer cartoonShadow">
-				<details class="tasksDetail">
+				<details id="completedDetail" class="tasksDetail">
 					<summary
 						id="taskListTitle"
 						class="secondary cartoonShadow"
@@ -113,7 +116,9 @@
 				</details>
 			</article>
 		</main>
+		<!-- #endregion -->
 
+		<!-- #region Footer with Popover -->
 		<footer class="formBottomContainer container">
 			<form class="newTaskForm" id="newTaskForm" action="">
 				<fieldset class="newTaskGroup cartoonShadow contrast" role="group">
@@ -165,26 +170,29 @@
 				</article>
 			</section>
 		</footer>
+		<!-- #endregion -->
 
-		<template new-task-list-item>
-			<li class="taskListItem">
-				<label class="taskListItemLabel"> <input type="checkbox" /> </label>
-				<div class="listExtras">
-					<small>
-						<time class="listItemTime" datetime=""></time>
-					</small>
-					<a class="listItemButton">
-						<svg
-							class="icon"
-							viewBox="0 0 24 24"
-							xmlns="http://www.w3.org/2000/svg">
-							<path
-								d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2Zm3.53 6.47-.084-.073a.75.75 0 0 0-.882-.007l-.094.08L12 10.939l-2.47-2.47-.084-.072a.75.75 0 0 0-.882-.007l-.094.08-.073.084a.75.75 0 0 0-.007.882l.08.094L10.939 12l-2.47 2.47-.072.084a.75.75 0 0 0-.007.882l.08.094.084.073a.75.75 0 0 0 .882.007l.094-.08L12 13.061l2.47 2.47.084.072a.75.75 0 0 0 .882.007l.094-.08.073-.084a.75.75 0 0 0 .007-.882l-.08-.094L13.061 12l2.47-2.47.072-.084a.75.75 0 0 0 .007-.882l-.08-.094-.084-.073.084.073Z" />
-						</svg>
-					</a>
-				</div>
-			</li>
-		</template>
 		<script type="module" src="/src/main.ts" defer></script>
 	</body>
+	<!-- #region Template -->
+	<template new-task-list-item>
+		<li class="taskListItem">
+			<label class="taskListItemLabel"> <input type="checkbox" /> </label>
+			<div class="listExtras">
+				<small>
+					<time class="listItemTime" datetime=""></time>
+				</small>
+				<a class="listItemButton">
+					<svg
+						class="icon"
+						viewBox="0 0 24 24"
+						xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2Zm3.53 6.47-.084-.073a.75.75 0 0 0-.882-.007l-.094.08L12 10.939l-2.47-2.47-.084-.072a.75.75 0 0 0-.882-.007l-.094.08-.073.084a.75.75 0 0 0-.007.882l.08.094L10.939 12l-2.47 2.47-.072.084a.75.75 0 0 0-.007.882l.08.094.084.073a.75.75 0 0 0 .882.007l.094-.08L12 13.061l2.47 2.47.084.072a.75.75 0 0 0 .882.007l.094-.08.073-.084a.75.75 0 0 0 .007-.882l-.08-.094L13.061 12l2.47-2.47.072-.084a.75.75 0 0 0 .007-.882l-.08-.094-.084-.073.084.073Z" />
+					</svg>
+				</a>
+			</div>
+		</li>
+	</template>
+	<!-- #endregion -->
 </html>

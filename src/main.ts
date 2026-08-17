@@ -22,19 +22,25 @@ console.log(israjatiangar())
 //#endregion
 
 //#region Variables
+const WEBPAGE = document.querySelector<HTMLHtmlElement>("html")!
 
-const tasksList = document.querySelector<HTMLUListElement>("#tasksList")
-const completedList = document.querySelector<HTMLUListElement>("#completedList")
-const newTaskForm = document.querySelector<HTMLFormElement>("#newTaskForm")
-const newTaskTitle = document.querySelector<HTMLInputElement>("#newTaskTitle")
+const tasksList = document.querySelector<HTMLUListElement>("#tasksList")!
+const tasksListContainer =
+	document.querySelector<HTMLDetailsElement>("#tasksDetail")!
+const completedList =
+	document.querySelector<HTMLUListElement>("#completedList")!
+const completedListContainer =
+	document.querySelector<HTMLDetailsElement>("#completedDetail")!
+const newTaskForm = document.querySelector<HTMLFormElement>("#newTaskForm")!
+const newTaskTitle = document.querySelector<HTMLInputElement>("#newTaskTitle")!
 
 const confirmDeletionDialog =
-	document.querySelector<HTMLDialogElement>("#confirmDeletion")
+	document.querySelector<HTMLDialogElement>("#confirmDeletion")!
 
-const themeButton = document.querySelector<HTMLButtonElement>("#themeButton")
-const openDialog = document.querySelector<HTMLButtonElement>("#openDialog")
-const closeDialog = document.querySelector<HTMLButtonElement>("#closeDialog")
-const clearAllButton = document.querySelector<HTMLButtonElement>("#clearAll")
+const themeButton = document.querySelector<HTMLButtonElement>("#themeButton")!
+const openDialog = document.querySelector<HTMLButtonElement>("#openDialog")!
+const closeDialog = document.querySelector<HTMLButtonElement>("#closeDialog")!
+const clearAllButton = document.querySelector<HTMLButtonElement>("#clearAll")!
 
 let setting: SETTINGS = {
 	preferedTheme: "dark",
@@ -44,14 +50,13 @@ let setting: SETTINGS = {
 loadSettings(setting)
 
 let tasksStore: Task[] = loadTasks()
-
 //#endregion
 
 //#region Events
 tasksStore.forEach((task) => addListItem(task))
-newTaskForm?.addEventListener("submit", (e) => {
+newTaskForm.addEventListener("submit", (e) => {
 	e.preventDefault()
-	if (newTaskTitle?.value === "" || newTaskTitle?.value == null) {
+	if (newTaskTitle.value === "" || newTaskTitle.value == null) {
 		return
 	}
 	const newTask: Task = {
@@ -67,29 +72,32 @@ newTaskForm?.addEventListener("submit", (e) => {
 	newTaskTitle.value = ""
 })
 
-themeButton?.addEventListener("click", () => {
+themeButton.onclick = () => {
 	toggleTheme()
 	saveSettings()
-})
-tasksList?.parentElement?.addEventListener("pointerdown", () => {
-	setTimeout(() => saveSettings(), 500)
-})
-completedList?.parentElement?.addEventListener("pointerdown", () => {
-	setTimeout(() => saveSettings(), 500)
-})
+}
+// tasksListContainer?.addEventListener("pointerdown", () => {
+// 	setTimeout(() => saveSettings(), 500)
+// })
+// completedList?.addEventListener("pointerdown", () => {
+// 	setTimeout(() => saveSettings(), 500)
+// })
 
-openDialog?.addEventListener("click", () => {
-	confirmDeletionDialog?.showModal()
-	document.querySelector("html")?.classList.add("modal-is-opening")
-	document.querySelector("html")?.classList.add("modal-is-open")
+tasksListContainer.onclick = () => setTimeout(() => saveSettings(), 500)
+completedListContainer.onclick = () => setTimeout(() => saveSettings(), 500)
+
+openDialog.addEventListener("click", () => {
+	confirmDeletionDialog.showModal()
+	WEBPAGE.classList.add("modal-is-opening")
+	WEBPAGE.classList.add("modal-is-open")
 	setTimeout(() => {
-		document.querySelector("html")?.classList.remove("modal-is-opening")
+		WEBPAGE.classList.remove("modal-is-opening")
 	}, 400)
 })
-closeDialog?.addEventListener("click", () => {
+closeDialog.addEventListener("click", () => {
 	closeCofirmDialog()
 })
-clearAllButton?.addEventListener("click", () => {
+clearAllButton.addEventListener("click", () => {
 	tasksStore = []
 	removeAllChild(tasksList)
 	removeAllChild(completedList)
@@ -99,23 +107,23 @@ clearAllButton?.addEventListener("click", () => {
 //#endregion
 
 //#region functions
-
 function addListItem(task: Task): void {
+	//Convert String to Date
 	if (!(task.createdAt instanceof Date)) {
 		task.createdAt = new Date(task.createdAt)
 	}
-	// HTML ELEMENTs
+
+	// Declare Variables
 	const template = document.querySelector(
 		"[new-task-list-item]"
 	) as HTMLTemplateElement
-	const clonnedNode = template.content.cloneNode(true) as DocumentFragment
-	const listItem = clonnedNode.querySelector("li") as HTMLLIElement
-	const listItemLabel = listItem?.querySelector("label") as HTMLLabelElement
-	const listItemTime = listItem?.querySelector("time") as HTMLTimeElement
-	const listItemButton = listItem.querySelector("a") as HTMLAnchorElement
-	const listItemCheckbox = listItemLabel?.querySelector(
-		"input"
-	) as HTMLInputElement
+	const clonnedNode = template.content.cloneNode(true)! as DocumentFragment
+	const listItem = clonnedNode.querySelector<HTMLLIElement>("li")!
+	const listItemLabel = listItem!.querySelector<HTMLLabelElement>("label")!
+	const listItemTime = listItem!.querySelector<HTMLTimeElement>("time")!
+	const listItemButton = listItem.querySelector<HTMLAnchorElement>("a")!
+	const listItemCheckbox =
+		listItemLabel.querySelector<HTMLInputElement>("input")!
 
 	// Set Variables
 	listItemLabel.append(task.title)
@@ -150,7 +158,7 @@ function addListItem(task: Task): void {
 		task.completed = listItemCheckbox.checked
 		listItem.remove()
 		parentList = listItemCheckbox.checked ? completedList : tasksList
-		parentList?.append(listItem)
+		parentList!.append(listItem)
 		saveTasks()
 	}
 	function deleteTask(task: Task): void {
@@ -159,32 +167,27 @@ function addListItem(task: Task): void {
 }
 
 function toggleTheme(): void {
-	let theme = document.querySelector("html")?.getAttribute("data-theme")
+	let theme = WEBPAGE!.getAttribute("data-theme")
 	if (theme === "dark") {
-		document.querySelector("html")?.setAttribute("data-theme", "light")
+		WEBPAGE.setAttribute("data-theme", "light")
 	} else {
-		document.querySelector("html")?.setAttribute("data-theme", "dark")
+		WEBPAGE.setAttribute("data-theme", "dark")
 	}
 }
 
 function closeCofirmDialog(): void {
-	document.querySelector("html")?.classList.add("modal-is-closing")
+	WEBPAGE?.classList.add("modal-is-closing")
 	setTimeout(() => {
-		document.querySelector("html")?.classList.remove("modal-is-closing")
-		document.querySelector("html")?.classList.remove("modal-is-open")
+		WEBPAGE.classList.remove("modal-is-closing")
+		WEBPAGE.classList.remove("modal-is-open")
 		confirmDeletionDialog?.close()
 	}, 400)
 }
 
 function saveSettings(): void {
-	setting.preferedTheme =
-		document
-			.querySelector<HTMLHtmlElement>("html")
-			?.getAttribute("data-theme") ?? "dark"
-	setting.isTaskListOpen =
-		tasksList?.parentElement?.hasAttribute("open") ?? true
-	setting.isCompletedListOpen =
-		completedList?.parentElement?.hasAttribute("open") ?? false
+	setting.preferedTheme = WEBPAGE.getAttribute("data-theme") ?? "dark"
+	setting.isTaskListOpen = tasksListContainer.hasAttribute("open") ?? true
+	setting.isCompletedListOpen = completedList.hasAttribute("open") ?? false
 	localStorage.setItem("SETTINGS", JSON.stringify(setting))
 }
 
@@ -193,14 +196,9 @@ function loadSettings(inputSettings: SETTINGS): void {
 	if (savedPrefs !== null) {
 		inputSettings = JSON.parse(savedPrefs)
 	}
-	document
-		.querySelector("html")
-		?.setAttribute("data-theme", inputSettings.preferedTheme)
-	tasksList?.parentElement?.toggleAttribute(
-		"open",
-		inputSettings.isTaskListOpen
-	)
-	completedList?.parentElement?.toggleAttribute(
+	WEBPAGE.setAttribute("data-theme", inputSettings.preferedTheme)
+	tasksListContainer.toggleAttribute("open", inputSettings.isTaskListOpen)
+	completedListContainer.toggleAttribute(
 		"open",
 		inputSettings.isCompletedListOpen
 	)

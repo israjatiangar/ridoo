@@ -41,7 +41,7 @@ let setting: SETTINGS = {
 	isTaskListOpen: true,
 	isCompletedListOpen: false
 }
-setting = loadSettings(setting)
+loadSettings(setting)
 
 let tasksStore: Task[] = loadTasks()
 
@@ -185,11 +185,10 @@ function saveSettings(): void {
 		tasksList?.parentElement?.hasAttribute("open") ?? true
 	setting.isCompletedListOpen =
 		completedList?.parentElement?.hasAttribute("open") ?? false
-	console.table(setting)
 	localStorage.setItem("SETTINGS", JSON.stringify(setting))
 }
 
-function loadSettings(inputSettings: SETTINGS): SETTINGS {
+function loadSettings(inputSettings: SETTINGS): void {
 	const savedPrefs = localStorage.getItem("SETTINGS")
 	if (savedPrefs !== null) {
 		inputSettings = JSON.parse(savedPrefs)
@@ -205,7 +204,6 @@ function loadSettings(inputSettings: SETTINGS): SETTINGS {
 		"open",
 		inputSettings.isCompletedListOpen
 	)
-	return inputSettings
 }
 
 function saveTasks(): void {

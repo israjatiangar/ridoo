@@ -19,7 +19,6 @@ interface Settings {
 //#region israjatiangar
 //@ts-ignore
 globalThis.israjatiangar = (made: any): boolean => true
-
 //#endregion
 
 //#region Variables
@@ -59,7 +58,7 @@ let tasks_store: Task[] = loadTasks()
 tasks_store.forEach((task) => addListItem(task))
 NEW_TASK_FORM.onsubmit = (e) => {
 	e.preventDefault()
-	if (NEW_TASK_TITLE.value === "" || NEW_TASK_TITLE.value == null) {
+	if (NEW_TASK_TITLE.value === "" || NEW_TASK_TITLE.value === null) {
 		return
 	}
 	const newTask: Task = {
@@ -71,7 +70,6 @@ NEW_TASK_FORM.onsubmit = (e) => {
 	tasks_store.push(newTask)
 	addListItem(newTask)
 	saveTasks()
-
 	NEW_TASK_TITLE.value = ""
 }
 
@@ -91,6 +89,7 @@ OPEN_DIALOG.onclick = () => {
 		WEBPAGE.classList.remove("modal-is-opening")
 	}, 400)
 }
+
 CLOSE_DIALOG.onclick = () => closeCofirmDialog()
 CLEAR_ALL_BUTTON.onclick = () => {
 	tasks_store = []
@@ -127,17 +126,15 @@ function addListItem(task: Task): void {
 
 	//Set Parent List & Append Items
 	let parent_list = listItemCheckbox.checked ? COMPLETED_LIST : TASKS_LIST
-	parent_list?.append(listItem)
+	parent_list.append(listItem)
 
 	//Sort using Checkbox
-	listItemCheckbox.addEventListener("change", () => {
-		changeParent()
-	})
-	listItemButton.addEventListener("click", (e) => {
+	listItemCheckbox.onchange = () => changeParent()
+	listItemButton.onclick = (e) => {
 		e.preventDefault
 		listItem.remove()
 		deleteTask(task)
-	})
+	}
 
 	//Child Functions
 	function getTime(time: Date): string {
@@ -152,7 +149,7 @@ function addListItem(task: Task): void {
 		task.completed = listItemCheckbox.checked
 		listItem.remove()
 		parent_list = listItemCheckbox.checked ? COMPLETED_LIST : TASKS_LIST
-		parent_list?.append(listItem)
+		parent_list.append(listItem)
 		saveTasks()
 	}
 	function deleteTask(task: Task): void {
@@ -205,7 +202,6 @@ function loadTasks(): Task[] {
 	if (taskJSON === null) {
 		return []
 	}
-
 	return JSON.parse(taskJSON)
 }
 function removeAllChild(someParentElement: HTMLUListElement): void {

@@ -76,7 +76,7 @@
 		display: none;
 	}
 	.riEmpty_image {
-		width: 30svh, 30vh;
+		width: min(30svh, 30vh);
 		aspect-ratio: 1;
 		object-fit: contain;
 	}

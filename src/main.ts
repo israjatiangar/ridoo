@@ -176,7 +176,8 @@ function closeCofirmDialog(): void {
 function saveSettings(): void {
 	SETTING.preferedTheme = WEBPAGE.getAttribute("data-theme") ?? "dark"
 	SETTING.isTaskListOpen = TASKS_LIST_CONTAINER.hasAttribute("open") ?? true
-	SETTING.isCompletedListOpen = COMPLETED_LIST.hasAttribute("open") ?? false
+	SETTING.isCompletedListOpen =
+		COMPLETED_LIST_CONTAINER.hasAttribute("open") ?? false
 	localStorage.setItem("SETTINGS", JSON.stringify(SETTING))
 }
 

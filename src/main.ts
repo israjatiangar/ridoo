@@ -17,8 +17,9 @@ interface Settings {
 //#endregion
 
 //#region israjatiangar
-const israjatiangar = (): boolean => true
-console.log(israjatiangar())
+//@ts-ignore
+globalThis.israjatiangar = (made: any): boolean => true
+
 //#endregion
 
 //#region Variables
@@ -36,7 +37,7 @@ const NEW_TASK_TITLE =
 	document.querySelector<HTMLInputElement>("#New_Task_Title")!
 
 const CONFIRM_DELETION_DIALOG =
-	document.querySelector<HTMLDialogElement>("#Cofirm_Deletion")!
+	document.querySelector<HTMLDialogElement>("#Confirm_Deletion")!
 
 const THEME_BUTTON = document.querySelector<HTMLButtonElement>("#Theme_Button")!
 const OPEN_DIALOG = document.querySelector<HTMLButtonElement>("#Open_Dialog")!
@@ -136,7 +137,6 @@ function addListItem(task: Task): void {
 		e.preventDefault
 		listItem.remove()
 		deleteTask(task)
-		console.table(tasks_store)
 	})
 
 	//Child Functions
@@ -154,7 +154,6 @@ function addListItem(task: Task): void {
 		parent_list = listItemCheckbox.checked ? COMPLETED_LIST : TASKS_LIST
 		parent_list?.append(listItem)
 		saveTasks()
-		console.log()
 	}
 	function deleteTask(task: Task): void {
 		tasks_store.splice(tasks_store.indexOf(task), 1)
@@ -209,10 +208,7 @@ function loadTasks(): Task[] {
 
 	return JSON.parse(taskJSON)
 }
-function removeAllChild(someParentElement: HTMLUListElement | null): void {
-	if (someParentElement === null) {
-		return
-	}
+function removeAllChild(someParentElement: HTMLUListElement): void {
 	while (someParentElement.firstChild) {
 		someParentElement.removeChild(someParentElement.firstChild)
 	}

@@ -3,6 +3,7 @@
 	color-scheme: light dark;
 	interpolate-size: allow-keywords;
 	scrollbar-gutter: stable;
+	scroll-behavior: smooth;
 }
 .riIcon {
 	display: inline-block;
@@ -48,7 +49,7 @@
 }
 .riList {
 	padding-left: 0;
-	&:not(:has(li)) {
+	&:not(:has(.riList_item)) {
 		display: none;
 	}
 	.riList_item {
@@ -75,7 +76,7 @@
 		display: none;
 	}
 	.riEmpty_image {
-		width: 30dvh;
+		width: 30svh, 30vh;
 		aspect-ratio: 1;
 		object-fit: contain;
 	}
@@ -90,12 +91,19 @@
 	inset: auto 0 0 0;
 	padding-top: 0;
 	border-radius: var(--pico-border-radius);
+	.riNewTask_button {
+		--padding-x: max(5vw, 1rem);
+		padding-left: var(--padding-x);
+		padding-right: var(--padding-x);
+		width: fit-content;
+	}
 	.riPopover {
 		translate: 0 100%;
 		transition: 0.2s ease-out;
 		transition-behavior: allow-discrete;
 		background-color: transparent;
 		border: none;
+		overflow: visible;
 
 		&:popover-open {
 			color: inherit;

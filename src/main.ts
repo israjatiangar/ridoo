@@ -1,5 +1,5 @@
 import "@picocss/pico/css/pico.pumpkin.min.css"
-import "./style.css"
+import "./assets/styles/style.css"
 import { v4 as uuidv4 } from "uuid"
 
 //#region Types

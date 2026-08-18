@@ -55,8 +55,8 @@ let tasks_store: Task[] = loadTasks()
 //#endregion
 
 //#region Events
-tasks_store.forEach((task) => addListItem(task))
-NEW_TASK_FORM.onsubmit = (e) => {
+tasks_store.forEach(task => addListItem(task))
+NEW_TASK_FORM.onsubmit = e => {
 	e.preventDefault()
 	if (NEW_TASK_TITLE.value === "" || NEW_TASK_TITLE.value === null) {
 		return
@@ -130,7 +130,7 @@ function addListItem(task: Task): void {
 
 	//Sort using Checkbox
 	listItemCheckbox.onchange = () => changeParent()
-	listItemButton.onclick = (e) => {
+	listItemButton.onclick = e => {
 		e.preventDefault
 		listItem.remove()
 		deleteTask(task)

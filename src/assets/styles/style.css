@@ -87,9 +87,7 @@
 /* #region Footer & Popover */
 .riFooter {
 	position: fixed;
-	bottom: 0;
 	inset: auto 0 0 0;
-	padding-top: 0;
 	border-radius: var(--pico-border-radius);
 	.riNewTask_button {
 		--padding-x: max(5vw, 1rem);
@@ -99,16 +97,14 @@
 	}
 	.riPopover {
 		translate: 0 100%;
-		transition: 0.2s ease-out;
-		transition-behavior: allow-discrete;
+		transition:
+			0.2s ease-out allow-discrete,
+			overlay 0.2s ease-out allow-discrete;
 		background-color: transparent;
 		border: none;
 		overflow: visible;
 
 		&:popover-open {
-			color: inherit;
-			padding: inherit;
-			padding-bottom: 0;
 			translate: 0 0;
 			@starting-style {
 				translate: 0 100%;

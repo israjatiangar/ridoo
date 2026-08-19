@@ -61,13 +61,18 @@
 }
 .riAccordian {
 	&::details-content {
+		opacity: 0;
 		overflow: hidden;
 		block-size: 0;
-		transition: all 0.2s ease-out;
+		transition-property: block-size, content-visibility;
+		transition-duration: 0.2s;
+		transition-timing-function: ease-in-out;
 		transition-behavior: allow-discrete;
 	}
 	&[open]::details-content {
 		block-size: auto;
+		transition-behavior: allow-discrete;
+		opacity: 1;
 	}
 }
 .riList {

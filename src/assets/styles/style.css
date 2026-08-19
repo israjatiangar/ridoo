@@ -23,9 +23,36 @@
 .height-fit {
 	height: fit-content;
 }
+.clickBounce {
+	transition: scale 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	button&:active {
+		scale: 0.9;
+	}
+	&:active {
+		scale: 0.99;
+	}
+}
 /* #endregion */
 
 /* #region NavbarStuff */
+.riBrand {
+	> * {
+		translate: 0 0;
+		transition: 0.2s ease-out;
+	}
+
+	:has(.riPopover:popover-open) & > * {
+		translate: 0 -0.2rem;
+	}
+}
+.riThemeButton {
+	> * {
+		transition: 0.2s ease-out;
+		[data-theme="light"] & {
+			transform: rotateZ(180deg);
+		}
+	}
+}
 .riMain {
 	padding-bottom: 100px;
 }
@@ -34,13 +61,10 @@
 /* #region All Task Related */
 
 .riAccordian {
-	&[open] {
-		margin-bottom: 0;
-	}
 	&::details-content {
-		block-size: 0;
-		transition: 0.2s ease-out;
 		overflow: hidden;
+		block-size: 0;
+		transition: all 0.2s ease-out;
 		transition-behavior: allow-discrete;
 	}
 	&[open]::details-content {
@@ -54,6 +78,8 @@
 	}
 	.riList_item {
 		display: flex;
+		opacity: 1;
+		translate: 0 0;
 		justify-content: space-between;
 		list-style: none;
 		:has(input:checked) {
@@ -62,6 +88,21 @@
 		}
 		.riListItem_time {
 			color: var(--pico-secondary-border);
+		}
+
+		&:not(:has(.riListItem_exit)) {
+			transition-property: all, display, overlay, translate, opacity;
+			transition-behavior: allow-discrete;
+			transition-duration: 0.1s;
+			transition-timing-function: ease-out;
+		}
+		@starting-style {
+			opacity: 0;
+			translate: 0 100%;
+		}
+		&.riList_Item-exit {
+			opacity: 0;
+			translate: 0 100%;
 		}
 	}
 }
@@ -76,9 +117,20 @@
 		display: none;
 	}
 	.riEmpty_image {
+		display: inline-block;
 		width: min(30svh, 30vh);
 		aspect-ratio: 1;
 		object-fit: contain;
+	}
+	opacity: 1;
+	translate: 0 0%;
+	transition-property: translate, opacity, overlay;
+	transition-behavior: allow-discrete;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-out;
+	@starting-style {
+		translate: 0 -50%;
+		opacity: 0;
 	}
 }
 
@@ -97,9 +149,9 @@
 	}
 	.riPopover {
 		translate: 0 100%;
-		transition:
-			0.2s ease-out allow-discrete,
-			overlay 0.2s ease-out allow-discrete;
+		transition-property: display, overlay, translate;
+		transition-behavior: allow-discrete;
+		transition-duration: 0.2s;
 		background-color: transparent;
 		border: none;
 		overflow: visible;

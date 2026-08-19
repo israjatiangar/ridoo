@@ -14,7 +14,9 @@
 			<nav class="container">
 				<ul>
 					<li>
-						<button class="outline riShadow" popovertarget="Credits">
+						<button
+							class="riBrand outline riShadow clickBounce"
+							popovertarget="Credits">
 							<svg
 								class="riIcon"
 								viewBox="0 0 24 24"
@@ -30,7 +32,9 @@
 				</ul>
 				<ul>
 					<li>
-						<button id="Theme_Button" class="secondary riShadow">
+						<button
+							id="Theme_Button"
+							class="secondary riShadow riThemeButton clickBounce">
 							<svg
 								class="riIcon"
 								viewBox="0 0 24 24"
@@ -41,7 +45,7 @@
 						</button>
 					</li>
 					<li>
-						<button id="Open_Dialog" class="riShadow">
+						<button id="Open_Dialog" class="riShadow clickBounce">
 							<svg
 								class="riIcon"
 								viewBox="0 0 24 24"
@@ -58,8 +62,8 @@
 					<header><h2>Confirm Deletion</h2></header>
 					<p>Do you want to Delete all your Tasks in the list?</p>
 					<footer>
-						<button id="Close_Dialog" class="secondary">No</button>
-						<button id="Clear_All">Yes</button>
+						<button id="Close_Dialog" class="secondary clickBounce">No</button>
+						<button id="Clear_All" class="clickBounce">Yes</button>
 					</footer>
 				</article>
 			</dialog>
@@ -70,7 +74,7 @@
 		<main class="riMain container grid">
 			<article class="height-fit riShadow">
 				<details id="Tasks_Detail" class="riAccordian">
-					<summary class="secondary riShadow" role="button">
+					<summary class="secondary riShadow clickBounce" role="button">
 						<svg
 							class="riIcon"
 							viewBox="0 0 24 24"
@@ -93,7 +97,7 @@
 
 			<article class="height-fit riShadow">
 				<details id="Completed_Detail" class="riAccordian">
-					<summary class="secondary riShadow" role="button">
+					<summary class="secondary riShadow clickBounce" role="button">
 						<svg
 							class="riIcon"
 							viewBox="0 0 24 24"
@@ -119,7 +123,7 @@
 		<!-- #region Footer with Popover -->
 		<footer class="riFooter container">
 			<form id="New_Task_Form" action="">
-				<fieldset class="riShadow contrast" role="group">
+				<fieldset class="riShadow contrast clickBounce" role="group">
 					<input id="New_Task_Title" type="text" placeholder="New Task" />
 					<button class="riNewTask_button" type="reset">
 						<svg

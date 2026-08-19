@@ -130,10 +130,12 @@ function addListItem(task: Task): void {
 
 	//Sort using Checkbox
 	listItemCheckbox.onchange = () => changeParent()
-	listItemButton.onclick = e => {
-		e.preventDefault
-		listItem.remove()
-		deleteTask(task)
+	listItemButton.onclick = () => {
+		listItem.classList.add("riList_Item-exit")
+		listItem.ontransitionend = () => {
+			listItem.remove()
+			deleteTask(task)
+		}
 	}
 
 	//Child Functions
@@ -147,10 +149,18 @@ function addListItem(task: Task): void {
 
 	function changeParent() {
 		task.completed = listItemCheckbox.checked
-		listItem.remove()
-		parent_list = listItemCheckbox.checked ? COMPLETED_LIST : TASKS_LIST
-		parent_list.append(listItem)
-		saveTasks()
+		listItem.classList.add("riList_Item-exit")
+		listItem.addEventListener(
+			"transitionend",
+			() => {
+				listItem.classList.remove("riList_Item-exit")
+				listItem.remove()
+				parent_list = listItemCheckbox.checked ? COMPLETED_LIST : TASKS_LIST
+				parent_list.append(listItem)
+				saveTasks()
+			},
+			{ once: true }
+		)
 	}
 	function deleteTask(task: Task): void {
 		tasks_store.splice(tasks_store.indexOf(task), 1)
@@ -205,6 +215,7 @@ function loadTasks(): Task[] {
 	}
 	return JSON.parse(taskJSON)
 }
+
 function removeAllChild(someParentElement: HTMLUListElement): void {
 	while (someParentElement.firstChild) {
 		someParentElement.removeChild(someParentElement.firstChild)

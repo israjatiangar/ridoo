@@ -53,13 +53,12 @@
 		}
 	}
 }
+/* #endregion */
+
+/* #region Main & All Task Related */
 .riMain {
 	padding-bottom: 100px;
 }
-/* #endregion */
-
-/* #region All Task Related */
-
 .riAccordian {
 	&::details-content {
 		overflow: hidden;
